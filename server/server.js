@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const {mongoose} = require('./db/mongoose');
-const {Todos} = require('./models/todo');
+const {Todo} = require('./models/todo');
 const {User} = require('./models/user');
 
 const app = express();
@@ -10,7 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.post('/todos', (req, res) => {
-  const todo = new Todos({
+  const todo = new Todo({
     text: req.body.text
   });
 
@@ -25,3 +25,5 @@ app.post('/todos', (req, res) => {
 app.listen(3000, () => {
   console.log('Server has started on port 3000');
 });
+
+module.exports = {app};
