@@ -69,16 +69,16 @@ app.delete('/todos/:id', authenticate, (req, res) => {
 
   Todo.findOneAndRemove({
     _id: id,
-    _creator: req.user_id
+    _creator: req.user._id
   })
-    .then(todo => {
-      if (!todo) {
-        return res.status(404).send();
-      }
-      res.status(200).send({todo});
-    }).catch(e => {
-      return res.status(400).send();
-    });
+  .then(todo => {
+    if (!todo) {
+      return res.status(404).send();
+    }
+    res.status(200).send({todo});
+  }).catch(e => {
+    return res.status(400).send();
+  });
 });
 
 app.patch('/todos/:id', authenticate, (req, res) => {
